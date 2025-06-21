@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    container_name: "at-extender"
+    hostname: "at-extender"
+    restart: "unless-stopped"
+    network_mode: host
+    volumes:
+      - "./config.json:/app/config.json"
