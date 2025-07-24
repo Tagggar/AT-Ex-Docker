@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:slim
 
 RUN apt-get update -qq \
  && apt-get install -qq -y \
@@ -12,6 +12,6 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --no-cache-dir playwright requests \
- && playwright install --with-deps chromium firefox webkit
+ && playwright install --with-deps firefox
 
 CMD curl -sSL https://raw.githubusercontent.com/Dinobeiser/AT-Extender/main/at-extender.py -o at-extender.py && python at-extender.py
