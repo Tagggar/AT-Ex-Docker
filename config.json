@@ -1,7 +1,7 @@
 {
   "RUFNUMMER": "0123456789",
   "PASSWORT": "sonnenblumenkerne",
-  "TELEGRAM": "0",
+  "TELEGRAM": "1",
   "BOT_TOKEN": "DeinTelegramBotToken",
   "CHAT_ID": "DeineChatID",
   "AUTO_UPDATE": "1",
