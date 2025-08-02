@@ -5,7 +5,7 @@
   "BOT_TOKEN": "DeinTelegramBotToken",
   "CHAT_ID": "DeineChatID",
   "AUTO_UPDATE": "1",
-  "SLEEP_MODE": "random",
+  "SLEEP_MODE": "smart",
   "SLEEP_INTERVAL": "120",
   "BROWSER": "firefox"
 }
