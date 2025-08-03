@@ -1,17 +1,16 @@
 #!/bin/bash
-
-cat <<EOF > config.json
+cat > /app/config.json <<EOF
 {
   "RUFNUMMER": "${RUFNUMMER}",
   "PASSWORT": "${PASSWORT}",
-  "TELEGRAM": "1",
+  "TELEGRAM": "${TELEGRAM}",
   "BOT_TOKEN": "${BOT_TOKEN}",
   "CHAT_ID": "${CHAT_ID}",
-  "AUTO_UPDATE": "1",
-  "SLEEP_MODE": "smart",
-  "SLEEP_INTERVAL": "120",
-  "BROWSER": "firefox"
+  "AUTO_UPDATE": "${AUTO_UPDATE}",
+  "SLEEP_MODE": "${SLEEP_MODE}",
+  "SLEEP_INTERVAL": "${SLEEP_INTERVAL}",
+  "BROWSER": "${BROWSER}"
 }
 EOF
 
-python3 at-extender.py
+exec "$@"
