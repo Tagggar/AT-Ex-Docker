@@ -14,4 +14,9 @@ COPY . .
 RUN pip install --no-cache-dir playwright requests \
  && playwright install --with-deps firefox
 
-CMD curl -sSL https://raw.githubusercontent.com/Dinobeiser/AT-Extender/main/at-extender.py -o at-extender.py && python at-extender.py
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+CMD ["sh", "-c", "curl -sSL https://raw.githubusercontent.com/Dinobeiser/AT-Extender/main/at-extender.py -o at-extender.py && python at-extender.py"]
