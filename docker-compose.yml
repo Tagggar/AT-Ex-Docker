@@ -1,19 +1,30 @@
-version: '3.8'
+name: Build and Push to DockerHub
 
-services:
-  app:
-    build: .
-    container_name: at-extender
-    hostname: at-extender
-    restart: unless-stopped
-    network_mode: host
-    environment:
-      - RUFNUMMER=${RUFNUMMER}
-      - PASSWORT=${PASSWORT}
-      - TELEGRAM=${TELEGRAM}
-      - BOT_TOKEN=${BOT_TOKEN}
-      - CHAT_ID=${CHAT_ID}
-      - AUTO_UPDATE=${AUTO_UPDATE}
-      - SLEEP_MODE=${SLEEP_MODE}
-      - SLEEP_INTERVAL=${SLEEP_INTERVAL}
-      - BROWSER=${BROWSER}
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to DockerHub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/at-extender:latest
