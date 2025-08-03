@@ -1,9 +1,19 @@
+version: '3.8'
+
 services:
   app:
     build: .
-    container_name: "at-extender"
-    hostname: "at-extender"
-    restart: "unless-stopped"
+    container_name: at-extender
+    hostname: at-extender
+    restart: unless-stopped
     network_mode: host
-    volumes:
-      - "./config.json:/app/config.json"
+    environment:
+      - RUFNUMMER=${RUFNUMMER}
+      - PASSWORT=${PASSWORT}
+      - TELEGRAM=${TELEGRAM}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - CHAT_ID=${CHAT_ID}
+      - AUTO_UPDATE=${AUTO_UPDATE}
+      - SLEEP_MODE=${SLEEP_MODE}
+      - SLEEP_INTERVAL=${SLEEP_INTERVAL}
+      - BROWSER=${BROWSER}
